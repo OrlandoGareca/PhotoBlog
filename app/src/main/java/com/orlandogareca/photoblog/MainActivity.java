@@ -59,7 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
                 default:
                     return  false;
+
+                    ///
+            case R.id.action_setting_btn:
+                sendToSetting();
         }
+        return false;
+    }
+
+    private void sendToSetting() {
+        Intent loginIntent = new Intent(MainActivity.this, SetupActivity.class);
+        startActivity(loginIntent);
     }
 
     private void LogOut() {
@@ -71,4 +81,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(loginIntent);
         finish();
     }
+
 }

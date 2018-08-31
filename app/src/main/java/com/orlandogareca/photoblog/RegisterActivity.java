@@ -62,9 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if(task.isSuccessful()) {
-                                   Intent setupIntent = new Intent(RegisterActivity.this,SetupActivity.class);
-                                   startActivity(setupIntent);
-                                   finish();
+                                    sendToMain();
                                 } else {
                                     String errorMessage = task.getException().getMessage();
                                     Toast.makeText(RegisterActivity.this, "Error : " + errorMessage  , Toast.LENGTH_SHORT).show();
