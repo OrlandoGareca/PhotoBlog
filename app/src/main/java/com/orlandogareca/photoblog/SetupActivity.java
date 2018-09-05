@@ -116,12 +116,13 @@ public class SetupActivity extends AppCompatActivity {
         setupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String user_name = setupName.getText().toString();
-                setupProgress.setVisibility(View.VISIBLE);
+                if (!TextUtils.isEmpty(user_name) && mainImageURI != null) {
+
+                    setupProgress.setVisibility(View.VISIBLE);
 
                 if(isChanged) {
-
-                    if (!TextUtils.isEmpty(user_name) && mainImageURI != null) {
 
                         user_id = firebaseAuth.getCurrentUser().getUid();
 
@@ -145,11 +146,11 @@ public class SetupActivity extends AppCompatActivity {
                             }
                         });
 
-                    }
-                } else {
+                    } else {
 
                     storeFirestore(null,user_name);
 
+                    }
                 }
 
             }
