@@ -54,46 +54,51 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Photo Blog");
 
-        mainbottomNav = findViewById(R.id.mainBottomNav);
+        if(mAuth.getCurrentUser() != null) {
 
-        //FRAGMENTS
-        homeFragment = new HomeFragment();
-        notificationFragment = new NotificationFragment();
-        accountFragment = new AccountFragment();
+            mainbottomNav = findViewById(R.id.mainBottomNav);
 
-        mainbottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            //FRAGMENTS
+            homeFragment = new HomeFragment();
+            notificationFragment = new NotificationFragment();
+            accountFragment = new AccountFragment();
 
-                switch ( item.getItemId()){
-                    case R.id.bottom_action_home :
-                        replaceFragment(homeFragment);
-                        return true;
-                    case R.id.bottom_action_account :
-                        replaceFragment(accountFragment);
-                        return true;
-                    case R.id.bottom_action_notif :
-                        replaceFragment(notificationFragment);
-                        return true;
+            replaceFragment(homeFragment);
+
+            mainbottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    switch (item.getItemId()) {
+                        case R.id.bottom_action_home:
+                            replaceFragment(homeFragment);
+                            return true;
+                        case R.id.bottom_action_account:
+                            replaceFragment(accountFragment);
+                            return true;
+                        case R.id.bottom_action_notif:
+                            replaceFragment(notificationFragment);
+                            return true;
 
                         default:
                             return false;
 
+                    }
                 }
-            }
-        });
+            });
 
 
-        addPostBtn = findViewById(R.id.add_post_btn);
-        addPostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            addPostBtn = findViewById(R.id.add_post_btn);
+            addPostBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                Intent newFastIntent = new Intent(MainActivity.this,NewPostActivity.class);
-                startActivity(newFastIntent);
+                    Intent newFastIntent = new Intent(MainActivity.this, NewPostActivity.class);
+                    startActivity(newFastIntent);
 
-            }
-        });
+                }
+            });
+        }
 
     }
 
